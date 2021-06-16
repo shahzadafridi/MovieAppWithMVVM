@@ -22,14 +22,18 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_baseline_arrow_white_24"/>
 
-    <Button
+    <TextView
         android:id="@+id/watch_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:background="@color/white"
         android:fontFamily="@font/titillium_web_bold"
         android:text="@string/watch_move_done"
-        android:textColor="@color/white" />
+        android:textSize="22sp"
+        android:textColor="@color/black" />
 
 </RelativeLayout>

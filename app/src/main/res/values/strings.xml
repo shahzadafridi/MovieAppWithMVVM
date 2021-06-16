@@ -25,7 +25,7 @@
     <string name="movie_detail_frag_title">Ten twenty Movies</string>
 
     <!--  MovieWatchActivity  -->
-    <string name="watch_move_done">Done</string>
+    <string name="watch_move_done">DONE</string>
 
     <!--  MovieBookFragment  -->
     <string name="movie_book_frag_title">Ten twenty Movies</string>
