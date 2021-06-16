@@ -1,12 +1,12 @@
-package com.example.TentwentAssignment.data.local.room.entity
+package com.example.TentwentAssignment.data.local.room.entity.movie
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "movie")
-data class MovieEntity(
-    @PrimaryKey(autoGenerate = true)
+@Entity(tableName = "video")
+data class VideoEntity(
+    @PrimaryKey()
     @ColumnInfo(name="id")
     val id : Int? = null,
     @ColumnInfo(name="response")
