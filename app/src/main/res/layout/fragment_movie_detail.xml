@@ -7,14 +7,14 @@
     android:background="@color/white"
     android:fillViewport="true"
     android:scrollbars="none"
-    tools:context=".ui.main.MovieDetailFragment">
+    tools:context=".ui.movie.fragments.MovieDetailFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".ui.main.MovieDetailFragment">
+        tools:context=".ui.movie.fragments.MovieDetailFragment">
 
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/movie_detail_image"

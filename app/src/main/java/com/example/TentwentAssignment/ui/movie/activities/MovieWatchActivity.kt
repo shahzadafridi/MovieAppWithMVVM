@@ -1,11 +1,12 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie.activities
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.TentwentAssignment.data.remote.response.movie.video.VideoResponse
-import com.example.TentwentAssignment.databinding.ActivityWatchBinding
+import com.example.TentwentAssignment.databinding.ActivityWatchMovieBinding
+import com.example.TentwentAssignment.ui.movie.MovieViewModel
 import com.example.TentwentAssignment.util.Constants
 import com.example.TentwentAssignment.util.Resource
 import com.google.gson.Gson
@@ -16,16 +17,16 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class WatchActivity : AppCompatActivity(){
+class MovieWatchActivity : AppCompatActivity(){
 
-    val TAG: String = "WatchActivity"
-    lateinit var binding: ActivityWatchBinding
-    val viewModel: MainViewModel by viewModels()
+    val TAG: String = "MovieWatchActivity"
+    lateinit var binding: ActivityWatchMovieBinding
+    val viewModel: MovieViewModel by viewModels()
     @Inject lateinit var gson: Gson
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWatchBinding.inflate(layoutInflater)
+        binding = ActivityWatchMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.watchBack.setOnClickListener {

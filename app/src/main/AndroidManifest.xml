@@ -15,14 +15,14 @@
         android:theme="@style/Theme.AppTheme">
 
         <activity
-            android:name=".ui.main.WatchActivity"
+            android:name=".ui.movie.activities.MovieWatchActivity"
             android:theme="@style/Theme.AppThemeNoActionBar"
             android:screenOrientation="landscape">
 
         </activity>
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.movie.activities.MovieActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

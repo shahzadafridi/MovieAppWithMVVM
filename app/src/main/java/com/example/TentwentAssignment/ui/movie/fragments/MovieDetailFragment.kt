@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,17 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.TentwentAssignment.R
 import com.example.TentwentAssignment.data.remote.response.movie.detail.MovieDetailResponse
 import com.example.TentwentAssignment.data.remote.response.movie.images.ImagesResponse
 import com.example.TentwentAssignment.databinding.FragmentMovieDetailBinding
 import com.example.TentwentAssignment.ui.base.BaseFragment
+import com.example.TentwentAssignment.ui.movie.MovieViewModel
+import com.example.TentwentAssignment.ui.movie.activities.MovieWatchActivity
 import com.example.TentwentAssignment.util.Constants
-import com.example.TentwentAssignment.util.FragmentStack
 import com.example.TentwentAssignment.util.Resource
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +26,7 @@ class MovieDetailFragment : BaseFragment() {
 
     val TAG: String = "MovieDetailFragment"
     lateinit var binding: FragmentMovieDetailBinding
-    val viewModel: MainViewModel by viewModels()
+    val viewModel: MovieViewModel by viewModels()
     @Inject lateinit var gson: Gson
 
     override fun setNavTitle() {
@@ -124,7 +122,7 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     private fun goWatchTrailerFragment(movieId: Int){
-        val intent = Intent(parentActivity!!,WatchActivity::class.java).apply {
+        val intent = Intent(parentActivity!!, MovieWatchActivity::class.java).apply {
             putExtra("movie_id",movieId)
         }
         parentActivity!!.startActivity(intent)

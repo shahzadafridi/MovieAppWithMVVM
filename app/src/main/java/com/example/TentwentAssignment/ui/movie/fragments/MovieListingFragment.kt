@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import com.example.TentwentAssignment.R
 import com.example.TentwentAssignment.data.remote.response.movie.MovieResponse
 import com.example.TentwentAssignment.data.remote.response.movie.Result
-import com.example.TentwentAssignment.databinding.FragmentMainBinding
+import com.example.TentwentAssignment.databinding.FragmentMovieListingBinding
 import com.example.TentwentAssignment.ui.base.BaseFragment
+import com.example.TentwentAssignment.ui.movie.adapter.MovieAdapter
+import com.example.TentwentAssignment.ui.movie.MovieViewModel
 import com.example.TentwentAssignment.util.Constants
 import com.example.TentwentAssignment.util.FragmentStack
 import com.example.TentwentAssignment.util.Resource
@@ -19,12 +21,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment(), MovieAdapter.IMovie {
+class MovieListingFragment : BaseFragment(), MovieAdapter.IMovie {
 
-    val TAG: String = "MainFragment"
-    val viewModel: MainViewModel by viewModels()
+    val TAG: String = "MovieListingFragment"
+    val viewModel: MovieViewModel by viewModels()
     @Inject lateinit var gson: Gson
-    lateinit var binding: FragmentMainBinding
+    lateinit var binding: FragmentMovieListingBinding
 
     override fun setNavTitle() {
         parentActivity!!.title = "Ten twenty app"
@@ -34,7 +36,7 @@ class MainFragment : BaseFragment(), MovieAdapter.IMovie {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(layoutInflater)
+        binding = FragmentMovieListingBinding.inflate(layoutInflater)
         viewModel.moviesLiveData.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -45,7 +47,7 @@ class MainFragment : BaseFragment(), MovieAdapter.IMovie {
                     Log.i(TAG, "SUCCESS ${it.data}")
                     it.data?.let { movieEntity ->
                         val moviesResponse = gson.fromJson(movieEntity.response, MovieResponse::class.java)
-                        binding.movieRv.adapter =  MovieAdapter(requireContext(),this@MainFragment,moviesResponse.results)
+                        binding.movieRv.adapter =  MovieAdapter(requireContext(),this@MovieListingFragment,moviesResponse.results)
                         binding.progressBar.visibility = View.GONE
                     }
                 }

@@ -3,7 +3,7 @@ package com.example.TentwentAssignment.di
 import android.content.Context
 import com.example.TentwentAssignment.data.local.room.AppDao
 import com.example.TentwentAssignment.data.remote.endpoint.ApiService
-import com.example.TentwentAssignment.ui.main.MainRepository
+import com.example.TentwentAssignment.ui.movie.MovieRepository
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -23,7 +23,7 @@ object RepositoryModule {
         appDao: AppDao,
         gson: Gson,
         @ApplicationContext context: Context
-    ): MainRepository {
-        return MainRepository(apiService,appDao,gson,context)
+    ): MovieRepository {
+        return MovieRepository(apiService,appDao,gson,context)
     }
 }
