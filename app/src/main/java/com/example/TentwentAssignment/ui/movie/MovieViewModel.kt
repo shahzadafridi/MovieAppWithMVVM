@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie
 
 import androidx.lifecycle.*
 import com.example.TentwentAssignment.data.local.room.entity.movie.ImageEntity
@@ -16,11 +16,11 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val repository: MainRepository,
+class MovieViewModel @Inject constructor(
+    private val repository: MovieRepository,
 ) : ViewModel() {
 
-    val TAG = "MainViewModel"
+    val TAG = "MovieViewModel"
 
     val moviesLiveData: MutableLiveData<Resource<MovieEntity>> = MutableLiveData()
     val moviesDetailLiveData: MutableLiveData<Resource<MovieDetailEntity>> = MutableLiveData()

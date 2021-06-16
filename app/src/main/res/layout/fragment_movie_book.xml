@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.movie.fragments.MovieBookFragment">
+
+    <TextView
+        android:id="@+id/movie_book_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/titillium_web_bold"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:text="@string/movie_book_frag_title"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/titillium_web_bold"
+        android:lines="1"
+        android:text="@string/movie_book_frag_choose_loc"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/movie_book_locations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/spinner_bg"
+        android:clipToPadding="true"
+        android:dropDownSelector="@color/tv_rect_border"
+        android:fontFamily="@font/titillium_web_regular"
+        android:overlapAnchor="false"
+        android:popupBackground="@drawable/spinner_row_rectangle_bg"
+        android:spinnerMode="dropdown"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/titillium_web_bold"
+        android:lines="1"
+        android:text="@string/movie_book_frag_choose_cin"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/movie_book_cinemas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/spinner_bg"
+        android:clipToPadding="true"
+        android:dropDownSelector="@color/tv_rect_border"
+        android:fontFamily="@font/titillium_web_regular"
+        android:overlapAnchor="false"
+        android:popupBackground="@drawable/spinner_row_rectangle_bg"
+        android:spinnerMode="dropdown"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/titillium_web_bold"
+        android:lines="1"
+        android:text="@string/movie_book_frag_seat_no"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/movie_book_seat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        android:hint="@string/movie_book_frag_seat_no_hint"
+        android:background="@drawable/light_wight_round_bg"
+        android:fontFamily="@font/titillium_web_regular"
+        android:padding="12dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/movie_book_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/titillium_web_bold"
+        android:text="@string/movie_book_frag_bt_text"
+        android:textColor="@color/white" />
+
+</LinearLayout>

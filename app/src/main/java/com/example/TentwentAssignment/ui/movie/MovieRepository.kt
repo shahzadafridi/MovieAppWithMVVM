@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie
 
 import android.content.Context
 import android.util.Log
@@ -16,7 +16,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
-class MainRepository(
+class MovieRepository(
         private val apiService: ApiService,
         private val appDao: AppDao,
         private val gson: Gson,

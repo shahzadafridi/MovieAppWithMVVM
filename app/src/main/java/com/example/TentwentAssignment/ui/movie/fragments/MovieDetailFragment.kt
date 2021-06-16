@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.ui.main
+package com.example.TentwentAssignment.ui.movie.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.TentwentAssignment.R
@@ -16,8 +14,9 @@ import com.example.TentwentAssignment.data.remote.response.movie.detail.MovieDet
 import com.example.TentwentAssignment.data.remote.response.movie.images.ImagesResponse
 import com.example.TentwentAssignment.databinding.FragmentMovieDetailBinding
 import com.example.TentwentAssignment.ui.base.BaseFragment
+import com.example.TentwentAssignment.ui.movie.MovieViewModel
+import com.example.TentwentAssignment.ui.movie.activities.MovieWatchActivity
 import com.example.TentwentAssignment.util.Constants
-import com.example.TentwentAssignment.util.FragmentStack
 import com.example.TentwentAssignment.util.Resource
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,11 +27,11 @@ class MovieDetailFragment : BaseFragment() {
 
     val TAG: String = "MovieDetailFragment"
     lateinit var binding: FragmentMovieDetailBinding
-    val viewModel: MainViewModel by viewModels()
+    val viewModel: MovieViewModel by viewModels()
     @Inject lateinit var gson: Gson
 
     override fun setNavTitle() {
-
+        parentActivity!!.title = getString(R.string.movie_detail_frag_title)
     }
 
     override fun onCreateView(
@@ -51,7 +50,7 @@ class MovieDetailFragment : BaseFragment() {
                         val moviesDetailResponse = gson.fromJson(movieDetailEntity.response, MovieDetailResponse::class.java)
                         moviesDetailResponse?.let { m ->
                             binding.movieDetailTitle.text = m.title
-                            binding.movieDetailGenre.text = "Test"
+                            binding.movieDetailGenre.text = m.genre
                             binding.movieDetailDate.text = m.release_date
                             binding.movieDetailOverview.text = m.overview
                             binding.movieWatchBt.setOnClickListener {
@@ -73,10 +72,13 @@ class MovieDetailFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.d(TAG, "LOADING ${it.message}")
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.movieDetailContentLl.visibility = View.INVISIBLE
                 }
                 Resource.Status.SUCCESS -> {
                     Log.i(TAG, "SUCCESS ${it.data}")
                     it.data?.let { imageEntity ->
+                        binding.progressBar.visibility = View.GONE
                         val imageResponse = gson.fromJson(imageEntity.response, ImagesResponse::class.java)
                         imageResponse?.let { images ->
                             if(!images.posters.isNullOrEmpty()) {
@@ -92,14 +94,17 @@ class MovieDetailFragment : BaseFragment() {
                                     }
                                 }
                                 binding.movieDetailImage.setImageList(imageList)
+                                binding.movieDetailContentLl.visibility = View.VISIBLE
                             }
                         }
                     }
                 }
                 Resource.Status.ERROR -> {
+                    binding.progressBar.visibility = View.GONE
                     Log.e(TAG, "ERROR ${it.message}")
                 }
                 else -> {
+                    binding.progressBar.visibility = View.GONE
                     Log.e(TAG,"INVALID - No status found.")
                 }
             }
@@ -111,7 +116,7 @@ class MovieDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let { bundle ->
-            val movieId = bundle.getInt("movie_id")
+            val movieId = bundle.getInt(Constants.MOVIE_ID)
             viewModel.onImage(
                 apiKey = Constants.API_KEY,
                 movieId = movieId
@@ -124,8 +129,8 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     private fun goWatchTrailerFragment(movieId: Int){
-        val intent = Intent(parentActivity!!,WatchActivity::class.java).apply {
-            putExtra("movie_id",movieId)
+        val intent = Intent(parentActivity!!, MovieWatchActivity::class.java).apply {
+            putExtra(Constants.MOVIE_ID,movieId)
         }
         parentActivity!!.startActivity(intent)
     }
