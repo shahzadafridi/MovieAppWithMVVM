@@ -29,7 +29,7 @@ class MovieListingFragment : BaseFragment(), MovieAdapter.IMovie {
     lateinit var binding: FragmentMovieListingBinding
 
     override fun setNavTitle() {
-        parentActivity!!.title = "Ten twenty app"
+        parentActivity!!.title = getString(R.string.movie_listing_frag_title)
     }
 
     override fun onCreateView(
@@ -42,10 +42,12 @@ class MovieListingFragment : BaseFragment(), MovieAdapter.IMovie {
                 Resource.Status.LOADING -> {
                     Log.d(TAG, "LOADING ${it.message}")
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.movieRv.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
                     Log.i(TAG, "SUCCESS ${it.data}")
                     it.data?.let { movieEntity ->
+                        binding.movieRv.visibility = View.VISIBLE
                         val moviesResponse = gson.fromJson(movieEntity.response, MovieResponse::class.java)
                         binding.movieRv.adapter =  MovieAdapter(requireContext(),this@MovieListingFragment,moviesResponse.results)
                         binding.progressBar.visibility = View.GONE
@@ -79,12 +81,24 @@ class MovieListingFragment : BaseFragment(), MovieAdapter.IMovie {
     override fun onMovieClick(item: Result, position: Int) {
         val movieDetailFrag = MovieDetailFragment()
         movieDetailFrag.arguments = Bundle().apply {
-            putInt("movie_id",item.id)
+            putInt(Constants.MOVIE_ID,item.id)
         }
-        FragmentStack.replaceFragmentToContainer(
+        FragmentStack.addFragmentToContainer(
             R.id.main_container,
             parentFragmentManager,
             movieDetailFrag, "MovieDetailFragment"
+        )
+    }
+
+    override fun onMovieBookClick(item: Result, position: Int) {
+        val movieBookFragment = MovieBookFragment()
+        movieBookFragment.arguments = Bundle().apply {
+            putInt(Constants.MOVIE_ID,item.id)
+        }
+        FragmentStack.addFragmentToContainer(
+            R.id.main_container,
+            parentFragmentManager,
+            movieBookFragment, "MovieBookFragment"
         )
     }
 

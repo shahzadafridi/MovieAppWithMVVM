@@ -16,15 +16,32 @@
         android:orientation="vertical"
         tools:context=".ui.movie.fragments.MovieDetailFragment">
 
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/movie_detail_image"
-            android:layout_width="wrap_content"
-            android:layout_height="220dp"
-            app:iss_auto_cycle="true"
-            app:iss_period="1000"
-            app:iss_delay="0"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/movie_detail_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:iss_auto_cycle="true"
+                app:iss_period="1000"
+                app:iss_delay="0"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminateTint="@color/black"
+                android:visibility="gone"
+                android:elevation="10dp"/>
+
+        </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/movie_detail_content_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -38,9 +55,9 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="Incrediable"
+                android:text="@string/movie_detail_title"
                 android:textColor="@color/black"
-                android:textSize="24dp"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <Button
@@ -49,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="Watch Trailer"
+                android:text="@string/movie_detail_trailer"
                 android:textColor="@color/white" />
 
             <TextView
@@ -59,9 +76,9 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="Genere"
+                android:text="@string/movie_detail_genre"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,7 +91,7 @@
                 android:fontFamily="@font/titillium_web_regular"
                 android:text=""
                 android:textColor="@color/black_50"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -84,9 +101,9 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="Date"
+                android:text="@string/movie_detail_date"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -99,7 +116,7 @@
                 android:fontFamily="@font/titillium_web_regular"
                 android:text=""
                 android:textColor="@color/black_50"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -109,9 +126,9 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="Overview"
+                android:text="@string/movie_detail_overview"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -124,7 +141,7 @@
                 android:ellipsize="end"
                 android:text=""
                 android:textColor="@color/black_50"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <Space

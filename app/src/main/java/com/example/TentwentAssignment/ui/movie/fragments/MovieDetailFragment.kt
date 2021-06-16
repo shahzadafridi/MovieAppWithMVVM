@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.TentwentAssignment.R
 import com.example.TentwentAssignment.data.remote.response.movie.detail.MovieDetailResponse
 import com.example.TentwentAssignment.data.remote.response.movie.images.ImagesResponse
 import com.example.TentwentAssignment.databinding.FragmentMovieDetailBinding
@@ -30,7 +31,7 @@ class MovieDetailFragment : BaseFragment() {
     @Inject lateinit var gson: Gson
 
     override fun setNavTitle() {
-
+        parentActivity!!.title = getString(R.string.movie_detail_frag_title)
     }
 
     override fun onCreateView(
@@ -49,7 +50,7 @@ class MovieDetailFragment : BaseFragment() {
                         val moviesDetailResponse = gson.fromJson(movieDetailEntity.response, MovieDetailResponse::class.java)
                         moviesDetailResponse?.let { m ->
                             binding.movieDetailTitle.text = m.title
-                            binding.movieDetailGenre.text = "Test"
+                            binding.movieDetailGenre.text = m.genre
                             binding.movieDetailDate.text = m.release_date
                             binding.movieDetailOverview.text = m.overview
                             binding.movieWatchBt.setOnClickListener {
@@ -71,10 +72,13 @@ class MovieDetailFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.d(TAG, "LOADING ${it.message}")
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.movieDetailContentLl.visibility = View.INVISIBLE
                 }
                 Resource.Status.SUCCESS -> {
                     Log.i(TAG, "SUCCESS ${it.data}")
                     it.data?.let { imageEntity ->
+                        binding.progressBar.visibility = View.GONE
                         val imageResponse = gson.fromJson(imageEntity.response, ImagesResponse::class.java)
                         imageResponse?.let { images ->
                             if(!images.posters.isNullOrEmpty()) {
@@ -90,14 +94,17 @@ class MovieDetailFragment : BaseFragment() {
                                     }
                                 }
                                 binding.movieDetailImage.setImageList(imageList)
+                                binding.movieDetailContentLl.visibility = View.VISIBLE
                             }
                         }
                     }
                 }
                 Resource.Status.ERROR -> {
+                    binding.progressBar.visibility = View.GONE
                     Log.e(TAG, "ERROR ${it.message}")
                 }
                 else -> {
+                    binding.progressBar.visibility = View.GONE
                     Log.e(TAG,"INVALID - No status found.")
                 }
             }
@@ -109,7 +116,7 @@ class MovieDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let { bundle ->
-            val movieId = bundle.getInt("movie_id")
+            val movieId = bundle.getInt(Constants.MOVIE_ID)
             viewModel.onImage(
                 apiKey = Constants.API_KEY,
                 movieId = movieId
@@ -123,7 +130,7 @@ class MovieDetailFragment : BaseFragment() {
 
     private fun goWatchTrailerFragment(movieId: Int){
         val intent = Intent(parentActivity!!, MovieWatchActivity::class.java).apply {
-            putExtra("movie_id",movieId)
+            putExtra(Constants.MOVIE_ID,movieId)
         }
         parentActivity!!.startActivity(intent)
     }

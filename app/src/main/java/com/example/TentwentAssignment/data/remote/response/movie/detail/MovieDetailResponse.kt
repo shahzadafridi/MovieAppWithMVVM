@@ -25,5 +25,6 @@ data class MovieDetailResponse(
     val title: String,
     val video: Boolean,
     val vote_average: Double,
-    val vote_count: Int
+    val vote_count: Int,
+    var genre: String = "Action, Triller, Science, Fictions"
 )

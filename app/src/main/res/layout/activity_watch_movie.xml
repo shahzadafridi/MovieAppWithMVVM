@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:fontFamily="@font/titillium_web_bold"
-        android:text="Done"
+        android:text="@string/watch_move_done"
         android:textColor="@color/white" />
 
 </RelativeLayout>

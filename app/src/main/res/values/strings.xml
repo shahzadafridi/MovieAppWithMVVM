@@ -1,7 +1,38 @@
 <resources>
+
     <string name="app_name">Tentwenty Assignment</string>
-    <string name="book">BOOK</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Notify Messages  -->
     <string name="player_error">Can\'t play video</string>
+    <string name="book_success_text">You have successfully reserved the seat</string>
+    <string name="book_validation_text">Enter seat number</string>
+
+    <!--  MovieListing  -->
+    <string name="movie_listing_frag_title">"Ten twenty Movies"</string>
+
+    <!--  MovieAapter  -->
+    <string name="row_movie_title">Movie Title</string>
+    <string name="row_movie_date">Movie Date</string>
+    <string name="row_movie_type">Movie Type</string>
+    <string name="row_movie_book_bt">Book</string>
+
+    <!--  MovieDetailFragment  -->
+    <string name="movie_detail_title">Movie Title</string>
+    <string name="movie_detail_trailer">Watch Trailer</string>
+    <string name="movie_detail_genre">Genre</string>
+    <string name="movie_detail_date">Date</string>
+    <string name="movie_detail_overview">Overview</string>
+    <string name="movie_detail_frag_title">Ten twenty Movies</string>
+
+    <!--  MovieWatchActivity  -->
+    <string name="watch_move_done">Done</string>
+
+    <!--  MovieBookFragment  -->
+    <string name="movie_book_frag_title">Ten twenty Movies</string>
+    <string name="movie_book_frag_choose_loc">Choose Locations</string>
+    <string name="movie_book_frag_choose_cin">Choose Cinema</string>
+    <string name="movie_book_frag_seat_no">Seat No</string>
+    <string name="movie_book_frag_seat_no_hint">Enter seat no</string>
+    <string name="movie_book_frag_bt_text">Book</string>
+
 </resources>

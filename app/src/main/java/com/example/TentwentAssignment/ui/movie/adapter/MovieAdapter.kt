@@ -35,8 +35,11 @@ class MovieAdapter(
     inner class ViewHolder(val binding: RowMovieLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.rowMovieBt.setOnClickListener{
+            binding.rowMovie.setOnClickListener{
                 iMovie.onMovieClick(list[absoluteAdapterPosition],absoluteAdapterPosition)
+            }
+            binding.rowMovieBt.setOnClickListener {
+                iMovie.onMovieBookClick(list[absoluteAdapterPosition],absoluteAdapterPosition)
             }
         }
 
@@ -58,5 +61,6 @@ class MovieAdapter(
 
     interface IMovie {
         fun onMovieClick(item: Result, position: Int)
+        fun onMovieBookClick(item: Result, position: Int)
     }
 }

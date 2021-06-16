@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:id="@+id/row_movie"
     android:layout_height="120dp"
     app:cardBackgroundColor="@color/white">
 
@@ -41,9 +42,9 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/titillium_web_bold"
                     android:lines="1"
-                    android:text="Title"
+                    android:text="@string/row_movie_title"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -52,9 +53,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/titillium_web_regular"
-                    android:text="Date"
+                    android:text="@string/row_movie_date"
                     android:textColor="@color/black_50"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textStyle="normal" />
 
                 <TextView
@@ -63,9 +64,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/titillium_web_regular"
-                    android:text="Type"
+                    android:text="@string/row_movie_type"
                     android:textColor="@color/black_50"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:textStyle="normal" />
 
             </LinearLayout>
@@ -79,9 +80,9 @@
                 android:gravity="center"
                 android:background="@drawable/light_wight_round_bg"
                 android:fontFamily="@font/titillium_web_bold"
-                android:text="@string/book"
+                android:text="@string/row_movie_book_bt"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:backgroundTint="@null" />
 
