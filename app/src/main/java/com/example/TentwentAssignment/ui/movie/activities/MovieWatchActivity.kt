@@ -32,7 +32,10 @@ class MovieWatchActivity : AppCompatActivity(){
         binding.watchBack.setOnClickListener {
             onBackPressed()
         }
-        val movieId = intent.getIntExtra("movie_id", -1)
+        binding.watchDone.setOnClickListener {
+            onBackPressed()
+        }
+        val movieId = intent.getIntExtra(Constants.MOVIE_ID, -1)
         if (movieId > 0) {
             viewModel.onVideo(
                 apiKey = Constants.API_KEY,
