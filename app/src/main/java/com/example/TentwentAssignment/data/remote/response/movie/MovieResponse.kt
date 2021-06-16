@@ -1,4 +1,4 @@
-package com.example.TentwentAssignment.data.remote.response
+package com.example.TentwentAssignment.data.remote.response.movie
 
 data class MovieResponse(
     val page: Int,

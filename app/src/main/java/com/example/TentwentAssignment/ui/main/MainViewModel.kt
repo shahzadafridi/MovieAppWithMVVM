@@ -1,7 +1,10 @@
 package com.example.TentwentAssignment.ui.main
 
 import androidx.lifecycle.*
-import com.example.TentwentAssignment.data.local.room.entity.MovieEntity
+import com.example.TentwentAssignment.data.local.room.entity.movie.ImageEntity
+import com.example.TentwentAssignment.data.local.room.entity.movie.MovieDetailEntity
+import com.example.TentwentAssignment.data.local.room.entity.movie.MovieEntity
+import com.example.TentwentAssignment.data.local.room.entity.movie.VideoEntity
 import com.example.TentwentAssignment.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,11 +23,18 @@ class MainViewModel @Inject constructor(
     val TAG = "MainViewModel"
 
     val moviesLiveData: MutableLiveData<Resource<MovieEntity>> = MutableLiveData()
+    val moviesDetailLiveData: MutableLiveData<Resource<MovieDetailEntity>> = MutableLiveData()
+    val videoLiveData: MutableLiveData<Resource<VideoEntity>> = MutableLiveData()
+    val imageLiveData: MutableLiveData<Resource<ImageEntity>> = MutableLiveData()
 
-    fun onGetMovies() {
+    fun onGetMovies(
+        apiKey: String,
+        language: String,
+        page: String
+    ) {
 
         viewModelScope.launch {
-            repository.onMovies()
+            repository.onMovies(apiKey,language,page)
                 .onStart {
                     withContext(Dispatchers.Main) {
                         moviesLiveData.value = Resource(
@@ -53,4 +63,105 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun onGetMovieDetail(
+        apiKey: String,
+        movieId: Int
+    ) {
+        viewModelScope.launch {
+            repository.onMovieDetail(apiKey,movieId)
+                .onStart {
+                    withContext(Dispatchers.Main) {
+                        moviesDetailLiveData.value = Resource(
+                            Resource.Status.LOADING,
+                            null,
+                            "Loading..."
+                        )
+                    }
+                }.catch { error ->
+                    withContext(Dispatchers.Main) {
+                        moviesDetailLiveData.value = Resource(
+                            Resource.Status.ERROR,
+                            null,
+                            error.message.toString()
+                        )
+                    }
+                }.collect { result ->
+                    withContext(Dispatchers.Main) {
+                        moviesDetailLiveData.value = Resource(
+                            Resource.Status.SUCCESS,
+                            result.data,
+                            "On movies detail fetched successfully."
+                        )
+                    }
+                }
+        }
+    }
+
+    fun onVideo(
+        apiKey: String,
+        movieId: Int
+    ) {
+        viewModelScope.launch {
+            repository.onVideo(apiKey,movieId)
+                .onStart {
+                    withContext(Dispatchers.Main) {
+                        videoLiveData.value = Resource(
+                            Resource.Status.LOADING,
+                            null,
+                            "Loading..."
+                        )
+                    }
+                }.catch { error ->
+                    withContext(Dispatchers.Main) {
+                        videoLiveData.value = Resource(
+                            Resource.Status.ERROR,
+                            null,
+                            error.message.toString()
+                        )
+                    }
+                }.collect { result ->
+                    withContext(Dispatchers.Main) {
+                        videoLiveData.value = Resource(
+                            Resource.Status.SUCCESS,
+                            result.data,
+                            "On video fetched successfully."
+                        )
+                    }
+                }
+        }
+    }
+
+    fun onImage(
+        apiKey: String,
+        movieId: Int
+    ) {
+        viewModelScope.launch {
+            repository.onImage(apiKey,movieId)
+                .onStart {
+                    withContext(Dispatchers.Main) {
+                        imageLiveData.value = Resource(
+                            Resource.Status.LOADING,
+                            null,
+                            "Loading..."
+                        )
+                    }
+                }.catch { error ->
+                    withContext(Dispatchers.Main) {
+                        imageLiveData.value = Resource(
+                            Resource.Status.ERROR,
+                            null,
+                            error.message.toString()
+                        )
+                    }
+                }.collect { result ->
+                    withContext(Dispatchers.Main) {
+                        imageLiveData.value = Resource(
+                            Resource.Status.SUCCESS,
+                            result.data,
+                            "On video fetched successfully."
+                        )
+                    }
+                }
+        }
+    }
 }
